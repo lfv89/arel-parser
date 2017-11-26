@@ -6,9 +6,9 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :email
       t.date :birth_date
       t.date :admission_date
-      t.boolean :is_active
+      t.boolean :is_active, default: false
       t.string :sex
-      t.time :last_sign_in_at
+      t.datetime :last_sign_in_at
 
       t.timestamps
     end

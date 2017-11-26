@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20171126161827) do
     t.string "email"
     t.date "birth_date"
     t.date "admission_date"
-    t.boolean "is_active"
+    t.boolean "is_active", default: false
     t.string "sex"
-    t.time "last_sign_in_at"
+    t.datetime "last_sign_in_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

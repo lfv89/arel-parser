@@ -2,8 +2,7 @@
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
-# directories %w(app lib config test spec features) \
-#  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
+# directories %w(app lib config test spec features) \ .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
 ## Note: if you are using the `directories` clause above and you are not
 ## watching the project directory ('.'), then you will want to move
 ## the Guardfile to a watched dir and symlink it back, e.g.
@@ -47,7 +46,7 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.controllers) do |m|
     [
       rspec.spec.call("routing/#{m[1]}_routing"),
-      rspec.spec.call("controllers/#{m[1]}_controller"),
+      rspec.spec.call("requests/#{m[1]}"),
       rspec.spec.call("acceptance/#{m[1]}")
     ]
   end
@@ -57,5 +56,6 @@ guard :rspec, cmd: "bundle exec rspec" do
   watch(rails.routes)          { "#{rspec.spec_dir}/routing" }
   watch(rails.app_controller)  { "#{rspec.spec_dir}/controllers" }
 
+  watch(%r{^spec/factories/(.+)\.rb$}) { "spec/models" }
   watch(%r{^spec/factories/(.+)\.rb$}) { "spec/models" }
 end
