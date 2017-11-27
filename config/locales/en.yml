@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    messages:
+      segment:
+        format: "a segment must be formed exclusively by hashes"
+        presence: "a segment must have at least 1 sub segment"
+        reflection: "every fragment should be an user field or association"
+
+

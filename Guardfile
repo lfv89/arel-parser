@@ -58,4 +58,7 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   watch(%r{^spec/factories/(.+)\.rb$}) { "spec/models" }
   watch(%r{^spec/factories/(.+)\.rb$}) { "spec/models" }
+
+  watch(%r{^app/services/(.+)\.rb$}) { "spec/services/" }
+  watch(%r{^app/validators/(.+)\.rb$}) { "spec/models/" }
 end
