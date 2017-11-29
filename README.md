@@ -26,7 +26,13 @@ curl -H "Content-Type: application/json" -X POST -d '{ "user": { "is_active":tru
 curl -H "Content-Type: application/json" -X POST -d '{ "segment": { "name": "tag_segment", "data": [{ "tags": ["tag1"] }] } }' http://qulture-challenge.herokuapp.com/api/v1/segments --verbose
 ```
 
-2) Creating a segment to filter users that are `(males AND active) OR (females)`:
+2) Creating a segment to filter users that were born between `1980 AND 1990`:
+
+```
+curl -H "Content-Type: application/json" -X POST -d '{ "segment": { "name": "age_segment", "data": [{ "birth_date": ["1980-01-01", "1990-01-01"] }] } }' http://qulture-challenge.herokuapp.com/api/v1/segments --verbose
+```
+
+3) Creating a segment to filter users that are `(males AND active) OR (females)`:
 
 ```
 curl -H "Content-Type: application/json" -X POST -d '{ "segment": { "name": "main_segment", "data": [ { "sex": "male", "is_active": true }, { "sex": "female" } ] } }' http://qulture-challenge.herokuapp.com/api/v1/segments --verbose
