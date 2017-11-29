@@ -12,7 +12,7 @@ module NodeMatchers
   end
 
   def association_match?(field)
-    segmented.reflect_on_association(field).present?
+    segmented.has_association?(field)
   end
 
   def equal_node_matcher(field, value)

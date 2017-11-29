@@ -11,19 +11,15 @@ class SegmentValidator < ActiveModel::EachValidator
 
   private
 
+  def segmented
+    @object.segmented.to_s.classify.constantize
+  end
+
   def any_invalid_fragment?
     @segment.inject(&:merge).keys.any? { |fragment| invalid_fragment?(fragment) }
   end
 
   def invalid_fragment?(fragment)
-    !existing_column?(fragment) && !existing_association?(fragment)
-  end
-
-  def existing_association?(fragment)
-    @object.segmented.to_s.classify.constantize.reflect_on_association(fragment).present?
-  end
-
-  def existing_column?(fragment)
-    ActiveRecord::Base.connection.column_exists?(@object.segmented.to_s.pluralize.to_sym, fragment.to_sym)
+    !segmented.has_column?(fragment) && !segmented.has_association?(fragment)
   end
 end

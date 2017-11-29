@@ -8,8 +8,13 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :email, :birth_date,
             :admission_date, :sex, :last_sign_in_at, presence: true
 
-  def self.segment(name)
-    data = Segment.find_by!(name: name).data
-    where(SegmentParser.new(data).parse)
+  class << self
+    def has_column?(field)
+      column_names.include?(field.to_s)
+    end
+
+    def has_association?(field)
+      reflect_on_association(field).present?
+    end
   end
 end
