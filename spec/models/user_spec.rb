@@ -23,6 +23,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:sex) }
     it { is_expected.to validate_presence_of(:last_sign_in_at) }
 
+    it { is_expected.to validate_uniqueness_of(:email) }
     it { is_expected.to validate_inclusion_of(:sex).in_array(%w(male female)) }
   end
 

@@ -8,6 +8,7 @@ RSpec.describe Segment, type: :model do
 
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
 
     describe 'The segment validation' do
       subject { described_class.new(data: data) }
