@@ -1,15 +1,19 @@
 class Segmentation
-  def initialize(name)
-    @segment = name
+  def initialize(slug)
+    @slug = slug
   end
 
-  def conditions
-    SegmentParser.new(segment).parse
+  def load
+    segment.segmented.where(parse)
   end
 
   private
 
+  def parse
+    SegmentParser.new(segment).parse
+  end
+
   def segment
-    Segment.find_by!(name: @segment).data
+    @segment ||= Segment.find_by!(slug: @slug)
   end
 end

@@ -1,11 +1,6 @@
 module Api
   module V1
     class UsersController < ::ApplicationController
-      def index
-        segmentation = Segmentation.new(params[:segment])
-        render json: User.where(segmentation.conditions)
-      end
-
       def create
         user = User.new(user_params)
 

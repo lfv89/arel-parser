@@ -18,5 +18,11 @@ class User < ApplicationRecord
     def has_association?(field)
       reflect_on_association(field).present?
     end
+
+    %i[string date boolean datetime].each do |type|
+      define_method("#{type}_field?") do |field|
+        type_for_attribute(field.to_s).type == type
+      end
+    end
   end
 end

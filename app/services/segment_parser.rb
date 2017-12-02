@@ -1,18 +1,25 @@
 class SegmentParser
-  include NodeMatchers
-
   def initialize(segment)
-    @segment = segment
-    @segmented = :user
+    @segment, @data = segment, segment.data
+    include_matchers && build_matchers
   end
 
   def parse
-    @segment.inject(parse_fragment(@segment.pop)) do |node, fragment|
-      node.or(parse_fragment(fragment))
-    end
+    parse_segment_data
   end
 
   private
+
+  def include_matchers
+    matcher = "#{@segment.segmented}NodeMatchers"
+    self.class.include(matcher.constantize)
+  end
+
+  def parse_segment_data
+    @data.inject(parse_fragment(@data.pop)) do |node, fragment|
+      node.or(parse_fragment(fragment))
+    end
+  end
 
   def parse_fragment(fragment)
     fragment.inject(parse_sub_fragment(*fragment.shift)) do |node, sub_fragment|
@@ -29,4 +36,5 @@ class SegmentParser
       return association_node_matcher(field, value)
     end
   end
+
 end

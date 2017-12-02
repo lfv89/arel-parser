@@ -11,15 +11,11 @@ class SegmentValidator < ActiveModel::EachValidator
 
   private
 
-  def segmented
-    @object.segmented.to_s.classify.constantize
-  end
-
   def any_invalid_fragment?
     @segment.inject(&:merge).keys.any? { |fragment| invalid_fragment?(fragment) }
   end
 
   def invalid_fragment?(fragment)
-    !segmented.has_column?(fragment) && !segmented.has_association?(fragment)
+    !@object.segmented.has_column?(fragment) && !@object.segmented.has_association?(fragment)
   end
 end

@@ -41,5 +41,5 @@ curl -H "Content-Type: application/json" -X POST -d '{ "segment": { "name": "mai
 ### How to apply a segment to filter users?
 
 ```
-curl http://qulture-challenge.herokuapp.com/api/v1/users?segment=segment-name --verbose
+curl http://qulture-challenge.herokuapp.com/api/v1/segmentations/segment-name --verbose
 ```
