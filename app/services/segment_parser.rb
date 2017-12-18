@@ -36,5 +36,4 @@ class SegmentParser
       return association_node_matcher(field, value)
     end
   end
-
 end
