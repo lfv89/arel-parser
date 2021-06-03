@@ -1,6 +1,6 @@
 # Arel Parser
 
-Arel Parser is a web application written in Rails that takes a specially crafted JSON and converts it to Arel. For this application, `users` can be filtered after applying a `segment`. A `segment` is created with a name and with its JSON data that will later be used to actually filter the `users`.
+Arel Parser is a web application written in Rails that takes a specially crafted JSON and converts it to Arel. For this application, `users` can be filtered after applying a `segment`. A `segment` is created with a name and with its JSON data that will later be used to actually filter the `users`. This tool was original built to solve a code challenge for an interview.
 
 ## Installation
 
